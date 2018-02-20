@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/white"
     tools:context="com.info.zhangxiaolong.myapp.main.MainActivity">
 
     <FrameLayout
@@ -13,5 +14,11 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+    <com.info.zhangxiaolong.myapp.main.nav.BottomNavView
+        android:id="@+id/bottom_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navMenu="@xml/bottom_nav_menu"
+        />
 
 </LinearLayout>
