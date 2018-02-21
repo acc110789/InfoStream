@@ -24,3 +24,7 @@ class NavMenu {
         return ArrayList(items)
     }
 }
+
+data class NavMenuItem(val id: Int,
+                       val text: CharSequence,
+                       val iconResId: Int)
