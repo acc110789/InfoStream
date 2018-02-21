@@ -24,6 +24,7 @@ class BottomNavView : LinearLayout {
             if(it.id == currentSelectedId) {
                 onNavItemReselectedListener?.onNavItemReselected(it)
             } else{
+                currentSelectedId = it.id
                 onNavItemSelectedListener?.onNavItemSelected(it)
             }
         }
@@ -102,7 +103,7 @@ class BottomNavView : LinearLayout {
             lp.weight = 1f
             itemView.layoutParams = lp
             itemView.bindItem(item)
-            itemView.setOnClickListener { mOnClickListener }
+            itemView.setOnClickListener(mOnClickListener)
             addView(itemView)
         }
     }
