@@ -5,4 +5,9 @@
     <string name="tab_favorite">收藏</string>
     <string name="tab_settings">设置</string>
     <string name="tab_mine">我的</string>
+
+    <string name="channel_zhihu">知乎日报</string>
+    <string name="channel_douban">豆瓣一刻</string>
+    <string name="channel_guoke">果壳精选</string>
+    <string name="channel_beauty">美女</string>
 </resources>
