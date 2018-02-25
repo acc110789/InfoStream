@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.info.zhangxiaolong.myapp.R
+import com.info.zhangxiaolong.myapp.main.fragment.home.FragmentProviderImpl
+import com.info.zhangxiaolong.myapp.main.fragment.home.PageAdaper
 
 /**
  * Created by zhangxiaolong on 2018/2/21.
@@ -22,14 +24,9 @@ class HomeFragment : Fragment() {
         tabNameContainer = view.findViewById(R.id.tab_name_container)
         tabContentContainer = view.findViewById(R.id.tab_content_container)
 
-        //init
-        tabNameContainer?.let {
-            //添加频道
-            it.addTab(it.newTab().setText(resources.getText(R.string.channel_zhihu)))
-            it.addTab(it.newTab().setText(resources.getText(R.string.channel_douban)))
-            it.addTab(it.newTab().setText(resources.getText(R.string.channel_guoke)))
-            it.addTab(it.newTab().setText(resources.getText(R.string.channel_beauty)))
-        }
+        tabContentContainer?.adapter = PageAdaper(childFragmentManager , FragmentProviderImpl())
+        tabNameContainer?.setupWithViewPager(tabContentContainer)
+
         return view
     }
 }
