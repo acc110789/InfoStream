@@ -7,12 +7,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:duplicateParentState="true"
         tools:src="@drawable/ic_favorite" />
 
     <TextView
         android:id="@+id/nav_title"
+        android:layout_marginBottom="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:duplicateParentState="true"
+        android:textColor="@color/nav_title_color"
         android:layout_gravity="center_horizontal"
         android:textSize="9dp"
         tools:text="首页" />

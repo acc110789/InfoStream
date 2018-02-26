@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         app:navId="@+id/tab_home"
-        app:navIcon="@drawable/ic_home_white_36dp"
+        app:navIcon="@drawable/ic_home"
         app:navTitle="@string/tab_home" />
 
     <item
@@ -13,6 +13,6 @@
 
     <item
         app:navId="@+id/tab_settings"
-        app:navIcon="@drawable/ic_power_settings_new"
+        app:navIcon="@drawable/ic_settings"
         app:navTitle="@string/tab_settings" />
 </menu>

@@ -28,9 +28,24 @@ class BottomNavView : LinearLayout {
                 onNavItemSelectedListener?.onNavItemSelected(it)
             }
         }
+        select(it)
+    }
+
+    private fun select(toBeSelect : View) {
+        (0 until childCount)
+                .map { getChildAt(it) }
+                .forEach { it.isSelected = (it == toBeSelect) }
     }
 
     var currentSelectedId : Int = View.NO_ID
+    set(value) = (0 until childCount)
+            .map { getChildAt(it) }
+            .forEach { val itemView = it as BottomNavItemView
+                if(itemView.mItem?.id == value) {
+                    select(itemView)
+                    return@forEach
+                }
+            }
 
     fun setOnNavItemReselectedListener(onNavItemReselectedListener: OnNavItemReselectedListener?) {
         this.onNavItemReselectedListener = onNavItemReselectedListener
