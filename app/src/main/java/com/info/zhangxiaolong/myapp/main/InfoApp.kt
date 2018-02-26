@@ -15,7 +15,7 @@ class InfoApp : Application() {
 
     companion object {
         private var sInstance: InfoApp? = null
-        public fun inst() : InfoApp? {
+        fun inst() : InfoApp? {
             return sInstance
         }
     }
