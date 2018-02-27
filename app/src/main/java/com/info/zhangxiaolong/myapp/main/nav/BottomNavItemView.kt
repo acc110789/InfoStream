@@ -1,6 +1,8 @@
 package com.info.zhangxiaolong.myapp.main.nav
 
 import android.content.Context
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -8,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 import com.info.zhangxiaolong.myapp.R
+import com.info.zhangxiaolong.myapp.main.InfoApp
 
 /**
  * Created by zhangxiaolong on 2018/2/21.
@@ -17,6 +20,10 @@ class BottomNavItemView : LinearLayout {
     var mItem: NavMenuItem? = null
     private var mIcon: ImageView? = null
     private var mTitle: TextView? = null
+
+    companion object {
+        val selectedColorFilter = PorterDuffColorFilter(InfoApp.inst().resources.getColor(R.color.red) , PorterDuff.Mode.SRC_IN)
+    }
 
     constructor(context: Context) : super(context) {
         init()
@@ -36,6 +43,19 @@ class BottomNavItemView : LinearLayout {
         mTitle = findViewById(R.id.nav_title)
     }
 
+    override fun dispatchSetSelected(selected: Boolean) {
+        super.dispatchSetSelected(selected)
+        resetColorFilter()
+    }
+
+    override fun dispatchSetPressed(pressed: Boolean) {
+        super.dispatchSetPressed(pressed)
+        resetColorFilter()
+    }
+
+    private fun resetColorFilter() {
+        mIcon?.colorFilter = if(isSelected || isPressed) selectedColorFilter else null
+    }
 
     fun bindItem(item: NavMenuItem) {
         this.mItem = item

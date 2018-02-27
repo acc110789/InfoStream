@@ -14,8 +14,8 @@ class InfoApp : Application() {
     }
 
     companion object {
-        private var sInstance: InfoApp? = null
-        fun inst() : InfoApp? {
+        private lateinit var sInstance: InfoApp
+        fun inst() : InfoApp {
             return sInstance
         }
     }

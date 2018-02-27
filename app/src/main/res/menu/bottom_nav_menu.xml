@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         app:navId="@+id/tab_home"
         app:navIcon="@drawable/ic_home"
-        app:navTitle="@string/tab_home" />
+        app:navTitle="@string/tab_home"
+        tools:ignore="MenuTitle" />
 
     <item
         app:navId="@+id/tab_favorite"
         app:navIcon="@drawable/ic_favorite"
-        app:navTitle="@string/tab_favorite" />
+        app:navTitle="@string/tab_favorite"
+        tools:ignore="MenuTitle" />
 
     <item
         app:navId="@+id/tab_settings"
         app:navIcon="@drawable/ic_settings"
-        app:navTitle="@string/tab_settings" />
+        app:navTitle="@string/tab_settings"
+        tools:ignore="MenuTitle" />
 </menu>

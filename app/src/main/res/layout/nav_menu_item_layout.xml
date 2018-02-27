@@ -18,7 +18,7 @@
         android:duplicateParentState="true"
         android:textColor="@color/nav_title_color"
         android:layout_gravity="center_horizontal"
-        android:textSize="9dp"
+        android:textSize="@dimen/nav_title_text_size"
         tools:text="首页" />
 
 </merge>
