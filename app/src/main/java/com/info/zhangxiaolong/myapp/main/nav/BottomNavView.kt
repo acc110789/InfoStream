@@ -2,6 +2,9 @@ package com.info.zhangxiaolong.myapp.main.nav
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -96,6 +99,9 @@ class BottomNavView : LinearLayout {
         init(attrs)
     }
 
+    private val mPaint = Paint()
+    private var mBorderWidth : Float = 0f
+
     private fun init(attrs: AttributeSet?) {
         if (attrs == null) {
             return
@@ -104,7 +110,10 @@ class BottomNavView : LinearLayout {
         //obtain menu id
         val array = context.obtainStyledAttributes(attrs, R.styleable.BottomNavView)
         val menuId = array.getResourceId(R.styleable.BottomNavView_navMenu, 0)
+        val borderColor = array.getColor(R.styleable.BottomNavView_navBorderColor, Color.WHITE)
+        mBorderWidth = array.getDimension(R.styleable.BottomNavView_navBorderWidth,0f)
         array.recycle()
+        mPaint.color = borderColor
 
         //obtain navmenu
         val inflater = NavMenuInflater(context)
@@ -120,6 +129,14 @@ class BottomNavView : LinearLayout {
             itemView.bindItem(item)
             itemView.setOnClickListener(mOnClickListener)
             addView(itemView)
+        }
+    }
+
+    override fun draw(canvas: Canvas?) {
+        super.draw(canvas)
+        val borderWidth = mBorderWidth
+        if(borderWidth > 0) {
+            canvas?.drawRect(0f, 0f, width.toFloat(), borderWidth , mPaint)
         }
     }
 }

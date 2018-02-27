@@ -5,20 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white"
     tools:context="com.info.zhangxiaolong.myapp.main.MainActivity">
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:background="@color/main_page_bg" />
 
     <com.info.zhangxiaolong.myapp.main.nav.BottomNavView
         android:id="@+id/bottom_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:navMenu="@menu/bottom_nav_menu"
-        />
-
+        android:background="@color/bottom_nav_bg"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        app:navBorderColor="@color/ssxinxian1"
+        app:navBorderWidth="0.5dp"
+        app:navMenu="@menu/bottom_nav_menu" />
 </LinearLayout>

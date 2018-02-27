@@ -15,14 +15,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <declare-styleable name="BottomNavView">
-        <attr name="navMenu" format="reference"/>
-    </declare-styleable>
-
-    <declare-styleable name="NavMenuItem">
-        <attr name="navId" format="reference"/>
-        <attr name="navTitle" format="string"/>
-        <attr name="navIcon" format="reference"/>
-    </declare-styleable>
-
 </resources>

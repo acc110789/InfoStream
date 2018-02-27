@@ -22,7 +22,7 @@ class BottomNavItemView : LinearLayout {
     private var mTitle: TextView? = null
 
     companion object {
-        val selectedColorFilter = PorterDuffColorFilter(InfoApp.inst().resources.getColor(R.color.red) , PorterDuff.Mode.SRC_IN)
+        val selectedColorFilter = PorterDuffColorFilter(InfoApp.inst().resources.getColor(R.color.ssxinzi4) , PorterDuff.Mode.SRC_IN)
     }
 
     constructor(context: Context) : super(context) {

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BottomNavView">
+        <attr name="navMenu" format="reference"/>
+        <attr name="navBorderWidth" format="dimension"/>
+        <attr name="navBorderColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="NavMenuItem">
+        <attr name="navId" format="reference"/>
+        <attr name="navTitle" format="string"/>
+        <attr name="navIcon" format="reference"/>
+    </declare-styleable>
+</resources>
