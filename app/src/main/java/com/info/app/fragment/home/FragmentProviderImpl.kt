@@ -1,4 +1,4 @@
-package com.info.zhangxiaolong.myapp.main.fragment.home
+package com.info.app.fragment.home
 
 import android.support.v4.app.Fragment
 

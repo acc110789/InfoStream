@@ -1,4 +1,4 @@
-package com.info.zhangxiaolong.myapp.main.nav
+package com.info.app.nav
 
 import android.content.Context
 import android.content.res.TypedArray

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.info.zhangxiaolong.myapp.main.MainActivity">
+    tools:context="com.info.zhangxiaolong.myapp.com.info.app.MainActivity">
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:background="@color/main_page_bg" />
 
-    <com.info.zhangxiaolong.myapp.main.nav.BottomNavView
+    <com.info.app.nav.BottomNavView
         android:id="@+id/bottom_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

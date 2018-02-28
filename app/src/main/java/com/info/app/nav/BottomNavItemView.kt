@@ -1,4 +1,4 @@
-package com.info.zhangxiaolong.myapp.main.nav
+package com.info.app.nav
 
 import android.content.Context
 import android.graphics.PorterDuff
@@ -10,7 +10,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 import com.info.zhangxiaolong.myapp.R
-import com.info.zhangxiaolong.myapp.main.InfoApp
+import com.info.app.InfoApp
+import com.info.base.BaseApp
 
 /**
  * Created by zhangxiaolong on 2018/2/21.
@@ -22,7 +23,7 @@ class BottomNavItemView : LinearLayout {
     private var mTitle: TextView? = null
 
     companion object {
-        val selectedColorFilter = PorterDuffColorFilter(InfoApp.inst().resources.getColor(R.color.ssxinzi4) , PorterDuff.Mode.SRC_IN)
+        val selectedColorFilter = PorterDuffColorFilter(BaseApp.inst().resources.getColor(R.color.ssxinzi4) , PorterDuff.Mode.SRC_IN)
     }
 
     constructor(context: Context) : super(context) {

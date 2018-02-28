@@ -1,4 +1,4 @@
-package com.info.zhangxiaolong.myapp.main.fragment
+package com.info.app.fragment
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.info.zhangxiaolong.myapp.R
-import com.info.zhangxiaolong.myapp.main.fragment.home.FragmentProviderImpl
-import com.info.zhangxiaolong.myapp.main.fragment.home.PageAdaper
+import com.info.app.fragment.home.FragmentProviderImpl
+import com.info.app.fragment.home.PageAdaper
 
 /**
  * Created by zhangxiaolong on 2018/2/21.
@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         tabNameContainer = view.findViewById(R.id.tab_name_container)
         tabContentContainer = view.findViewById(R.id.tab_content_container)
 
-        tabContentContainer?.adapter = PageAdaper(childFragmentManager , FragmentProviderImpl())
+        tabContentContainer?.adapter = PageAdaper(childFragmentManager, FragmentProviderImpl())
         tabNameContainer?.setupWithViewPager(tabContentContainer)
 
         return view

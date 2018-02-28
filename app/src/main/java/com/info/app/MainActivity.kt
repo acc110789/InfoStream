@@ -1,17 +1,17 @@
-package com.info.zhangxiaolong.myapp.main
+package com.info.app
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.widget.FrameLayout
 import com.info.zhangxiaolong.myapp.R
-import com.info.zhangxiaolong.myapp.main.fragment.FavoriteFragment
-import com.info.zhangxiaolong.myapp.main.fragment.HomeFragment
-import com.info.zhangxiaolong.myapp.main.fragment.SettingsFragment
-import com.info.zhangxiaolong.myapp.main.nav.BottomNavView
-import com.info.zhangxiaolong.myapp.main.nav.NavMenuItem
+import com.info.app.fragment.FavoriteFragment
+import com.info.app.fragment.HomeFragment
+import com.info.app.fragment.SettingsFragment
+import com.info.app.nav.BottomNavView
+import com.info.app.nav.NavMenuItem
+import com.info.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     companion object {
         private val KEY_BOTTOM_NAVIGATION_VIEW_SELECTED_ID = "KEY_BOTTOM_NAVIGATION_VIEW_SELECTED_ID"
         private val NO_ID = -1

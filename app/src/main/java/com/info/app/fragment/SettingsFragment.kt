@@ -1,4 +1,4 @@
-package com.info.zhangxiaolong.myapp.main.fragment.home
+package com.info.app.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import com.info.zhangxiaolong.myapp.R
 
 /**
- * Created by zhangxiaolong on 18/2/26.
+ * Created by zhangxiaolong on 2018/2/21.
  */
-class DoubanFragment : Fragment() {
+class SettingsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.example_fragment_layout , container , false)
+        return inflater.inflate(R.layout.settings_page_layout , container , false)
     }
 }
