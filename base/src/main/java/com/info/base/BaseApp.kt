@@ -7,7 +7,7 @@ import android.app.Application
  */
 open class BaseApp : Application(){
     companion object {
-        lateinit var sInst : BaseApp
+        private lateinit var sInst : BaseApp
         fun inst() : BaseApp {
             return sInst
         }

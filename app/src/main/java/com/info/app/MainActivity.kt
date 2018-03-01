@@ -9,9 +9,9 @@ import com.info.app.fragment.HomeFragment
 import com.info.app.fragment.SettingsFragment
 import com.info.app.nav.BottomNavView
 import com.info.app.nav.NavMenuItem
-import com.info.base.TranslucentActivity
+import com.info.base.BaseActivity
 
-class MainActivity : TranslucentActivity() {
+class MainActivity : BaseActivity() {
 
     companion object {
         private val KEY_BOTTOM_NAVIGATION_VIEW_SELECTED_ID = "KEY_BOTTOM_NAVIGATION_VIEW_SELECTED_ID"
