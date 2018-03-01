@@ -9,9 +9,10 @@ import com.info.app.fragment.HomeFragment
 import com.info.app.fragment.SettingsFragment
 import com.info.app.nav.BottomNavView
 import com.info.app.nav.NavMenuItem
-import com.info.base.BaseActivity
+import com.info.base.TranslucentActivity
 
-class MainActivity : BaseActivity() {
+class MainActivity : TranslucentActivity() {
+
     companion object {
         private val KEY_BOTTOM_NAVIGATION_VIEW_SELECTED_ID = "KEY_BOTTOM_NAVIGATION_VIEW_SELECTED_ID"
         private val NO_ID = -1
@@ -23,12 +24,15 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    override fun getContentViewId(): Int {
+        return R.layout.activity_main
+    }
+
     private var fragmentContainer: FrameLayout? = null
     private var bottomNavView: BottomNavView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         fragmentContainer = findViewById(R.id.fragment_container)
         bottomNavView = findViewById(R.id.bottom_nav_bar)
         initFragment(savedInstanceState)
