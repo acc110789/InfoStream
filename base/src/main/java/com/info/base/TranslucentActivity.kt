@@ -75,7 +75,7 @@ abstract class TranslucentActivity : BaseActivity() {
     abstract fun getContentViewId(): Int
 
     open fun getStatusBarColor() : Int {
-        return resources.getColor(R.color.ssxinzi4)
+        return resources.getColor(R.color.theme_color)
     }
 
     open fun setStatusBarColor(color : Int) {
