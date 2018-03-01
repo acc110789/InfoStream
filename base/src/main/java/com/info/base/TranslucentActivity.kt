@@ -1,5 +1,6 @@
 package com.info.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,19 +24,20 @@ abstract class TranslucentActivity : BaseActivity() {
         }
         super.onCreate(savedInstanceState)
 
-        var contentView: View = getContentView() ?: kotlin.run {
+        var  contentParentView : ViewGroup? = null
+        if (enableTranslucent) {
+            contentParentView = getContentParentWithStatusBar()
+        }
+        val contentView : View = getContentView() ?: kotlin.run {
             val contentId = getContentViewId()
+            val parent = contentParentView ?: TransViewGroup(this)
             when {
-                contentId > 0 -> LayoutInflater.from(this).inflate(contentId, null)
+                contentId > 0 -> LayoutInflater.from(this).inflate(contentId, parent , false)
                 else -> throw IllegalStateException("you must provider either contentView or contentId")
             }
         }
-        if (enableTranslucent) {
-            val contentParentView = getContentParentWithStatusBar()
-            contentParentView.addView(contentView)
-            contentView = contentParentView
-        }
-        super.setContentView(contentView)
+        contentParentView?.addView(contentView)
+        super.setContentView(contentParentView ?: contentView)
     }
 
     override fun setContentView(layoutResID: Int) {}
@@ -51,7 +53,7 @@ abstract class TranslucentActivity : BaseActivity() {
         mFakeStatusBar?.let {
             //已经有mFakeStatusBar了
             val oldParent = it.parent
-            if(oldParent is ViewGroup) {
+            if (oldParent is ViewGroup) {
                 oldParent.removeView(it)
             }
             parent.addView(it)
@@ -63,11 +65,14 @@ abstract class TranslucentActivity : BaseActivity() {
             mFakeStatusBar = statusBar
             setStatusBarColor(getStatusBarColor())
         }
+        parent.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         return parent
     }
 
     open fun enableTranslucent() = true
 
+    /**业务方自己负责设置对应的LayoutParams*/
     open fun getContentView(): View? {
         return null
     }
@@ -81,4 +86,8 @@ abstract class TranslucentActivity : BaseActivity() {
     open fun setStatusBarColor(color : Int) {
         mFakeStatusBar?.setBackgroundColor(color)
     }
+}
+
+class TransViewGroup(context: Context?) : ViewGroup(context) {
+    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {}
 }
