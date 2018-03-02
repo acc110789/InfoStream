@@ -28,6 +28,10 @@ android {
 
 }
 
+ext {
+    supportLibVersion = "27.0.2"
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -38,6 +42,7 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     api 'com.android.support.constraint:constraint-layout:1.0.2'
-    api 'com.android.support:appcompat-v7:27.0.2'
-    api 'com.android.support:design:27.0.2'
+    api "com.android.support:appcompat-v7:${supportLibVersion}"
+    api "com.android.support:design:${supportLibVersion}"
+//    api group: 'com.github.chrisbanes.pulltorefresh', name: 'library', version: '2.1.1'
 }
