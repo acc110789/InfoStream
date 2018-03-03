@@ -4,14 +4,17 @@ apply plugin: 'kotlin-android'
 //
 apply plugin: 'kotlin-android-extensions'
 
+def androidConfig = rootProject.ext.android
+def retrofitVersion = rootProject.ext.retrofitVersion
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion androidConfig.compileSdkVersion
     defaultConfig {
-        applicationId "com.info.zhangxiaolong.myapp"
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+        versionCode androidConfig.versionCode
+        versionName androidConfig.versionName
+        applicationId androidConfig.applicationId
     }
     buildTypes {
         release {
@@ -25,5 +28,5 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':base')
     implementation project(':pull_to_refresh')
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
 }

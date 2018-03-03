@@ -1,11 +1,12 @@
 apply plugin: 'com.android.library'
-
+def androidConfig = rootProject.ext.android
+def supportLibVersion = rootProject.ext.supportLibVersion
 android {
-    compileSdkVersion 27
+    compileSdkVersion androidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 27
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
     }
 
     buildTypes {
@@ -14,4 +15,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+}
+
+dependencies {
+    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
 }

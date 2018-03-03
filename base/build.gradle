@@ -4,17 +4,17 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+def androidConfig = rootProject.ext.android
+def supportLibVersion = rootProject.ext.supportLibVersion
+def constraintLayoutVersion = rootProject.ext.constraintLayoutVersion
+
 android {
-    compileSdkVersion 27
-
-
-
+    compileSdkVersion androidConfig.compileSdkVersion
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+        versionCode androidConfig.versionCode
+        versionName androidConfig.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -25,24 +25,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-}
-
-ext {
-    supportLibVersion = "27.0.2"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-//    testImplementation 'junit:junit:4.12'
-//    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    api "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
     api "com.android.support:appcompat-v7:${supportLibVersion}"
     api "com.android.support:design:${supportLibVersion}"
-//    api group: 'com.github.chrisbanes.pulltorefresh', name: 'library', version: '2.1.1'
 }
