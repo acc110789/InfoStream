@@ -24,6 +24,7 @@ import static android.support.v4.view.ViewPager.SCROLL_STATE_SETTLING;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -70,6 +71,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.info.base.Logger;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -132,6 +135,7 @@ import java.util.Iterator;
  */
 @ViewPager.DecorView
 public class TabLayout extends HorizontalScrollView {
+    private static final String TAG = TabLayout.class.getSimpleName();
 
     private static final int DEFAULT_HEIGHT_WITH_TEXT_ICON = 72; // dps
     static final int DEFAULT_GAP_TEXT_ICON = 8; // dps
@@ -277,6 +281,7 @@ public class TabLayout extends HorizontalScrollView {
         this(context, attrs, 0);
     }
 
+    @SuppressLint("PrivateResource")
     public TabLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
@@ -351,6 +356,14 @@ public class TabLayout extends HorizontalScrollView {
 
         // Now apply the tab mode and gravity
         applyModeAndGravity();
+    }
+
+    public void setBorderWidth(float borderWidth) {
+        mTabStrip.setBorderWidth(borderWidth);
+    }
+
+    public void setBorderColor(int color) {
+        mTabStrip.setBorderColor(color);
     }
 
     /**
@@ -463,7 +476,7 @@ public class TabLayout extends HorizontalScrollView {
         addTabView(tab);
 
         if (setSelected) {
-            tab.select();
+            tab.select(true);
         }
     }
 
@@ -1089,7 +1102,7 @@ public class TabLayout extends HorizontalScrollView {
     }
 
     void selectTab(Tab tab) {
-        selectTab(tab, true);
+        selectTab(tab , true);
     }
 
     void selectTab(final Tab tab, boolean updateIndicator) {
@@ -1142,23 +1155,45 @@ public class TabLayout extends HorizontalScrollView {
         }
     }
 
+    /**
+     * 改成懒滑动，仔细想了一下，没有(position,positionOffset)应该是
+     * 对应了一个显示的区域(这个区域的需要被完全显示出来)
+     * */
     private int calculateScrollXForTab(int position, float positionOffset) {
         if (mMode == MODE_SCROLLABLE) {
             final View selectedChild = mTabStrip.getChildAt(position);
             final View nextChild = position + 1 < mTabStrip.getChildCount()
                     ? mTabStrip.getChildAt(position + 1)
                     : null;
-            final int selectedWidth = selectedChild != null ? selectedChild.getWidth() : 0;
-            final int nextWidth = nextChild != null ? nextChild.getWidth() : 0;
+            if(selectedChild != null) {
+                final int selectedStart =  selectedChild.getLeft();
+                final int selectedEnd  = selectedStart + selectedChild.getWidth();
 
-            // base scroll amount: places center of tab in center of parent
-            int scrollBase = selectedChild.getLeft() + (selectedWidth / 2) - (getWidth() / 2);
-            // offset amount: fraction of the distance between centers of tabs
-            int scrollOffset = (int) ((selectedWidth + nextWidth) * 0.5f * positionOffset);
+                int nextStart = selectedStart;
+                int nextEnd = selectedEnd;
+                if(nextChild != null) {
+                    nextStart = nextChild.getLeft();
+                    nextEnd = nextStart + nextChild.getWidth();
+                }
 
-            return (ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_LTR)
-                    ? scrollBase + scrollOffset
-                    : scrollBase - scrollOffset;
+                float finalStart = positionOffset * nextStart + (1 - positionOffset) * selectedStart;
+                float finalEnd = positionOffset * nextEnd + (1 - positionOffset) * selectedEnd;
+
+                int scrollX = getScrollX();
+                int width = getWidth();
+
+                //下面的操作是保证从finalStart到finalEnd之间的区域被完全展示出来
+                if(finalStart <= scrollX) {
+                    return (int) finalStart;
+                } else if((scrollX + width)  <= finalEnd) {
+                    return (int) (finalEnd - width);
+                } else {
+                    //该区域本来就已经被完全展示出来了，什么都不用做
+                    return scrollX;
+                }
+            } else {
+                Logger.INSTANCE.w(TAG , "selected child is null , calculateScrollXForTab did nothing");
+            }
         }
         return 0;
     }
@@ -1214,7 +1249,7 @@ public class TabLayout extends HorizontalScrollView {
         private View mCustomView;
 
         TabLayout mParent;
-        TabView mView;
+        public TabView mView;
 
         Tab() {
             // Private constructor
@@ -1383,12 +1418,13 @@ public class TabLayout extends HorizontalScrollView {
 
         /**
          * Select this tab. Only valid if the tab has been added to the action bar.
+         * @param withAnim
          */
-        public void select() {
+        public void select(boolean withAnim) {
             if (mParent == null) {
                 throw new IllegalArgumentException("Tab not attached to a TabLayout");
             }
-            mParent.selectTab(this);
+            mParent.selectTab(this, withAnim);
         }
 
         /**
@@ -1464,7 +1500,7 @@ public class TabLayout extends HorizontalScrollView {
         }
     }
 
-    class TabView extends LinearLayout {
+    public class TabView extends LinearLayout {
         private Tab mTab;
         private TextView mTextView;
         private ImageView mIconView;
@@ -1498,7 +1534,7 @@ public class TabLayout extends HorizontalScrollView {
                 if (!handled) {
                     playSoundEffect(SoundEffectConstants.CLICK);
                 }
-                mTab.select();
+                mTab.select(false);
                 return true;
             } else {
                 return handled;
@@ -1757,6 +1793,9 @@ public class TabLayout extends HorizontalScrollView {
         private int mIndicatorLeft = -1;
         private int mIndicatorRight = -1;
 
+        private float mBorderWidth = 0f;
+        private Paint mBorderPaint = new Paint();
+
         private ValueAnimator mIndicatorAnimator;
 
         SlidingTabStrip(Context context) {
@@ -1770,6 +1809,14 @@ public class TabLayout extends HorizontalScrollView {
                 mSelectedIndicatorPaint.setColor(color);
                 ViewCompat.postInvalidateOnAnimation(this);
             }
+        }
+
+        void setBorderWidth(float borderWidth) {
+            mBorderWidth = Math.max(0 , borderWidth);
+        }
+
+        void setBorderColor(int color) {
+            mBorderPaint.setColor(color);
         }
 
         void setSelectedIndicatorHeight(int height) {
@@ -2002,6 +2049,12 @@ public class TabLayout extends HorizontalScrollView {
                 canvas.drawRect(mIndicatorLeft, getHeight() - mSelectedIndicatorHeight,
                         mIndicatorRight, getHeight(), mSelectedIndicatorPaint);
             }
+
+            float borderWidth = mBorderWidth;
+            if(borderWidth > 0) {
+                float heightFloat  = getHeight();
+                canvas.drawRect(0f, heightFloat - borderWidth , getWidth() ,  heightFloat , mBorderPaint);
+            }
         }
     }
 
@@ -2135,7 +2188,7 @@ public class TabLayout extends HorizontalScrollView {
 
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
-            mViewPager.setCurrentItem(tab.getPosition());
+            mViewPager.setCurrentItem(tab.getPosition() , false);
         }
 
         @Override

@@ -1,7 +1,6 @@
 package com.info.app.fragment
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
@@ -10,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.info.zhangxiaolong.myapp.R
 import com.info.app.fragment.home.FragmentProviderImpl
+import com.info.app.fragment.home.HomeTabLayout
 import com.info.app.fragment.home.PageAdaper
 
 /**
@@ -17,7 +17,7 @@ import com.info.app.fragment.home.PageAdaper
  */
 class HomeFragment : Fragment() {
 
-    private var tabNameContainer : TabLayout? = null
+    private var tabNameContainer : HomeTabLayout? = null
     private var tabContentContainer : ViewPager? = null
     private var toolBar : Toolbar? = null
 

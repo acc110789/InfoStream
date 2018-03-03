@@ -1,16 +1,14 @@
 package com.info.app.fragment.home
 
 import android.content.Context
-import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
-import android.support.design.widget.TabLayout
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.*
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.info.base.tab.TabLayout
 import com.info.zhangxiaolong.myapp.R
 
 /**
@@ -18,8 +16,21 @@ import com.info.zhangxiaolong.myapp.R
  */
 class HomeTabLayout : TabLayout {
 
-    private var mBorderWidth : Float = 0f
-    private var mBorderPaint = Paint()
+
+    private val mTabSelectedListener = object : OnTabSelectedListener {
+        override fun onTabSelected(tab: Tab?) {
+            tab?.mView?.isSelected = true
+        }
+
+        override fun onTabUnselected(tab: Tab?) {
+            tab?.mView?.isSelected = false
+        }
+
+        override fun onTabReselected(tab: Tab?) {
+            tab?.mView?.isSelected = true
+        }
+
+    }
 
     constructor(context: Context?) : super(context) {
         init(null)
@@ -33,11 +44,12 @@ class HomeTabLayout : TabLayout {
 
     private fun init(attrs: AttributeSet?) {
         attrs?.let {
-            val typeArray =  context.obtainStyledAttributes(it , R.styleable.HomeTabLayout)
-            mBorderWidth = Math.max(0f,typeArray.getDimension(R.styleable.HomeTabLayout_tabBorderWidth,0f))
-            mBorderPaint.color = typeArray.getColor(R.styleable.HomeTabLayout_tabBorderColor , Color.WHITE)
-            typeArray.recycle()
+            val a = context.obtainStyledAttributes(attrs, R.styleable.HomeTabLayout)
+            setBorderWidth(a.getDimension(R.styleable.HomeTabLayout_tabBorderWidth, 0f))
+            setBorderColor(a.getColor(R.styleable.HomeTabLayout_tabBorderColor, Color.WHITE))
+            a.recycle()
         }
+        addOnTabSelectedListener(mTabSelectedListener)
     }
 
     override fun addTab(tab: Tab, setSelected: Boolean) {
@@ -53,16 +65,6 @@ class HomeTabLayout : TabLayout {
         textView.isDuplicateParentStateEnabled = true
         textView.background = null
         tab.customView = textView
-    }
-
-
-    override fun draw(canvas: Canvas?) {
-        super.draw(canvas)
-        val borderWidth = mBorderWidth
-        if(borderWidth > 0) {
-            val heightFloat  = height.toFloat()
-            canvas?.drawRect(0f, heightFloat - borderWidth , width.toFloat(),  heightFloat , mBorderPaint)
-        }
     }
 
 }

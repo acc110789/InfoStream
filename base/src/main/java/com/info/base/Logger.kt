@@ -32,4 +32,8 @@ object Logger {
             throw IllegalStateException(errorMsg)
         }
     }
+
+    fun w(tag : String, msg : String?) {
+        Log.w(tag , msg)
+    }
 }
