@@ -11,4 +11,9 @@
         <attr name="navTitle" format="string"/>
         <attr name="navIcon" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="HomeTabLayout">
+        <attr name="tabBorderWidth" format="dimension"/>
+        <attr name="tabBorderColor" format="color"/>
+    </declare-styleable>
 </resources>

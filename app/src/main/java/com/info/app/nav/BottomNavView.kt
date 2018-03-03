@@ -111,7 +111,7 @@ class BottomNavView : LinearLayout {
         val array = context.obtainStyledAttributes(attrs, R.styleable.BottomNavView)
         val menuId = array.getResourceId(R.styleable.BottomNavView_navMenu, 0)
         val borderColor = array.getColor(R.styleable.BottomNavView_navBorderColor, Color.WHITE)
-        mBorderWidth = array.getDimension(R.styleable.BottomNavView_navBorderWidth,0f)
+        mBorderWidth = Math.max(0f,array.getDimension(R.styleable.BottomNavView_navBorderWidth,0f))
         array.recycle()
         mPaint.color = borderColor
 
