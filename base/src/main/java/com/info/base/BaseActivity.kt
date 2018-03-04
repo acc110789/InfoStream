@@ -45,12 +45,22 @@ abstract class BaseActivity : AppCompatActivity(){
         super.setContentView(mTranslucentPair?.first.apply {
             this?.addView(contentView)
         } ?: contentView)
+
+        bindView()
+        bindListener()
+        initData(savedInstanceState)
     }
 
     /**业务方自己负责设置对应的LayoutParams*/
     open fun getContentView(): View? {
         return null
     }
+
+    abstract fun bindView()
+
+    abstract fun bindListener()
+
+    abstract fun initData(savedInstanceState: Bundle?)
 
     abstract fun getContentViewId(): Int
 

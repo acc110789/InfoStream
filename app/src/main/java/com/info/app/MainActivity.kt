@@ -24,29 +24,33 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private var fragmentContainer: FrameLayout? = null
+    private var bottomNavView: BottomNavView? = null
+
     override fun getContentViewId(): Int {
         return R.layout.activity_main
     }
 
-    private var fragmentContainer: FrameLayout? = null
-    private var bottomNavView: BottomNavView? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun bindView() {
         fragmentContainer = findViewById(R.id.fragment_container)
         bottomNavView = findViewById(R.id.bottom_nav_bar)
-        initFragment(savedInstanceState)
+    }
+
+    override fun bindListener() {
         bottomNavView?.setOnNavItemReselectedListener(object : BottomNavView.OnNavItemReselectedListener {
             override fun onNavItemReselected(item: NavMenuItem) {
                 //刷新内容
             }
-
         })
         bottomNavView?.setOnNavItemSelectedListener(object : BottomNavView.OnNavItemSelectedListener {
             override fun onNavItemSelected(item: NavMenuItem) {
                 selectFragmentById(item.id)
             }
         })
+    }
+
+    override fun initData(savedInstanceState: Bundle?) {
+        initFragment(savedInstanceState)
     }
 
     private fun initFragment(savedInstanceState: Bundle?) {
