@@ -10,6 +10,10 @@ import com.info.zhangxiaolong.myapp.R
  * Created by zhangxiaolong on 18/2/26.
  */
 class ZhihuFragment : PullToRefreshListViewFragment<String>() {
+    override fun getOneData(): String {
+        return "Added after refresh..."
+    }
+
     override fun onCreateViewHolder(view: View): RecyclerView.ViewHolder {
         return ZhihuViewHolder(view)
     }
@@ -31,7 +35,7 @@ class ZhihuFragment : PullToRefreshListViewFragment<String>() {
         if(isFirstResume) {
             isFirstResume = false
             val data = ArrayList<String>().apply {
-                repeat(10,{
+                repeat(18,{
                     add("News" + it)
                 })
             }
