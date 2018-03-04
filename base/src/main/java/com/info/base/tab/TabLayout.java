@@ -72,7 +72,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.info.base.Logger;
+import com.orhanobut.logger.Logger;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -1192,7 +1192,7 @@ public class TabLayout extends HorizontalScrollView {
                     return scrollX;
                 }
             } else {
-                Logger.INSTANCE.w(TAG , "selected child is null , calculateScrollXForTab did nothing");
+                Logger.w(TAG , "selected child is null , calculateScrollXForTab did nothing");
             }
         }
         return 0;

@@ -7,6 +7,8 @@ apply plugin: 'kotlin-android-extensions'
 def androidConfig = rootProject.ext.android
 def supportLibVersion = rootProject.ext.supportLibVersion
 def constraintLayoutVersion = rootProject.ext.constraintLayoutVersion
+def stethoVersion = rootProject.ext.stethoVersion
+def loggerVersion = rootProject.ext.loggerVersion
 
 android {
     compileSdkVersion androidConfig.compileSdkVersion
@@ -31,7 +33,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    api "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
-    api "com.android.support:appcompat-v7:${supportLibVersion}"
-    api "com.android.support:design:${supportLibVersion}"
+    api "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+    api "com.android.support:appcompat-v7:$supportLibVersion"
+    api "com.android.support:design:$supportLibVersion"
+
+    api "com.facebook.stetho:stetho:$stethoVersion"
+    api "com.facebook.stetho:stetho-okhttp3:$stethoVersion"
+    api "com.orhanobut:logger:$loggerVersion"
+
 }
