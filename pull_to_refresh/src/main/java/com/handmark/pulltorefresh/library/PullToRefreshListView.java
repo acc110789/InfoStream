@@ -15,12 +15,9 @@
  *******************************************************************************/
 package com.handmark.pulltorefresh.library;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -203,13 +200,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 	}
 
 	protected ListView createListView(Context context, AttributeSet attrs) {
-		final ListView lv;
-		if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-			lv = new InternalListViewSDK9(context, attrs);
-		} else {
-			lv = new InternalListView(context, attrs);
-		}
-		return lv;
+		return  new InternalListViewSDK9(context, attrs);
 	}
 
 	@Override
@@ -253,7 +244,6 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 		}
 	}
 
-	@TargetApi(9)
 	final class InternalListViewSDK9 extends InternalListView {
 
 		public InternalListViewSDK9(Context context, AttributeSet attrs) {
