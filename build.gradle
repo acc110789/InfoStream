@@ -1,5 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: "config.gradle"
+apply from: "dependencies.gradle"
 buildscript {
     ext.kotlin_version = '1.1.51'
     repositories {
@@ -20,6 +20,15 @@ allprojects {
         google()
         jcenter()
     }
+    ext.androidConfig = [
+            compileSdkVersion: 27,
+            minSdkVersion    : 21,
+            targetSdkVersion : 27,
+            versionCode      : 1,
+            versionName      : "1.0",
+            applicationId    : "com.info.zhangxiaolong.myapp"
+    ]
+    libDependencies = rootProject.ext.libDependencies
 }
 
 task clean(type: Delete) {

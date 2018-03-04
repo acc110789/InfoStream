@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
-def androidConfig = rootProject.ext.android
-def supportLibVersion = rootProject.ext.supportLibVersion
+
 android {
     compileSdkVersion androidConfig.compileSdkVersion
 
@@ -18,5 +17,5 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
+    implementation libDependencies.recyclerview
 }

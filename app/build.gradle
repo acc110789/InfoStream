@@ -4,9 +4,6 @@ apply plugin: 'kotlin-android'
 //
 apply plugin: 'kotlin-android-extensions'
 
-def androidConfig = rootProject.ext.android
-def retrofitVersion = rootProject.ext.retrofitVersion
-
 android {
     compileSdkVersion androidConfig.compileSdkVersion
     defaultConfig {
@@ -28,5 +25,5 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':base')
     implementation project(':pull_to_refresh')
-    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation libDependencies.retrofit
 }

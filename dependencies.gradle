@@ -1,0 +1,18 @@
+ext {
+    supportLibVersion = "27.1.0"
+    retrofitVersion = "2.3.0"
+    constraintLayoutVersion = "1.0.2"
+    stethoVersion = "1.5.0"
+    loggerVersion = "2.1.1"
+
+    libDependencies = [
+            constraintLayout: "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
+            appCompatV7     : "com.android.support:appcompat-v7:$supportLibVersion",
+            design          : "com.android.support:design:$supportLibVersion",
+            stetho          : "com.facebook.stetho:stetho:$stethoVersion",
+            stethoOkhttp3   : "com.facebook.stetho:stetho-okhttp3:$stethoVersion",
+            logger          : "com.orhanobut:logger:$loggerVersion",
+            retrofit        : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            recyclerview    : "com.android.support:recyclerview-v7:${supportLibVersion}"
+    ]
+}
