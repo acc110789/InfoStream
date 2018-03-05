@@ -42,14 +42,6 @@ abstract class PullToRefreshListViewFragment<T> : Fragment() {
     private val mRefreshListener1 = PullToRefreshBase.OnRefreshListener<ListView> {
         val label = DateUtils.formatDateTime(context?.applicationContext, System.currentTimeMillis(),
                 DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_ABBREV_ALL)
-        // Update the LastUpdatedLabel
-        it.loadingLayoutProxy.setLastUpdatedLabel(label)
-        // Do work to refresh the list here.
-        GetDataTask().execute()
-    }
-
-    private val mLastItemItemVisibleListener = PullToRefreshBase.OnLastItemVisibleListener {
-        Toast.makeText(activity, "End of List!", Toast.LENGTH_SHORT).show()
     }
 
     private val mAdapter = object : BaseAdapter() {
@@ -89,39 +81,10 @@ abstract class PullToRefreshListViewFragment<T> : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mPullToRefreshListView = inflater.inflate(R.layout.pull_to_refresh_list_view_layout,
                 container, false) as PullToRefreshListView
-        mPullToRefreshListView?.setOnRefreshListener(mRefreshListener1)
-        mPullToRefreshListView?.setOnLastItemVisibleListener(mLastItemItemVisibleListener)
+        mPullToRefreshListView?.setOnRefreshListener(mRefreshListener2)
         mListView = mPullToRefreshListView?.refreshableView
         mListView?.adapter = mAdapter
         return mPullToRefreshListView
     }
-
-    abstract fun getOneData() : T
-
-    private inner class GetDataTask : AsyncTask<Void, Void, Array<String>>() {
-
-        private val mStrings = arrayOf("Abbaye de Belloc", "Abbaye du Mont des Cats", "Abertam", "Abondance", "Ackawi", "Acorn", "Adelost", "Affidelice au Chablis", "Afuega'l Pitu", "Airag", "Airedale", "Aisy Cendre", "Allgauer Emmentaler", "Abbaye de Belloc", "Abbaye du Mont des Cats", "Abertam", "Abondance", "Ackawi", "Acorn", "Adelost", "Affidelice au Chablis", "Afuega'l Pitu", "Airag", "Airedale", "Aisy Cendre", "Allgauer Emmentaler")
-
-        override fun doInBackground(vararg params: Void): Array<String> {
-            // Simulates a background job.
-            try {
-                Thread.sleep(4000)
-            } catch (e: InterruptedException) {
-            }
-
-            return mStrings
-        }
-
-        override fun onPostExecute(result: Array<String>) {
-            mListItems.addFirst(getOneData())
-            mAdapter.notifyDataSetChanged()
-
-            // Call onRefreshComplete when the list has been refreshed.
-            mPullToRefreshListView?.onRefreshComplete()
-
-            super.onPostExecute(result)
-        }
-    }
-
 }
 
