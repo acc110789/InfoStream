@@ -9,10 +9,7 @@ import com.info.zhangxiaolong.myapp.R
 /**
  * Created by zhangxiaolong on 18/2/26.
  */
-class ZhihuFragment : PullToRefreshListViewFragment<String>() {
-    override fun getOneData(): String {
-        return "Added after refresh..."
-    }
+class ZhihuFragment : PullToRefreshRecyclerViewFragment<String>() {
 
     override fun onCreateViewHolder(view: View): RecyclerView.ViewHolder {
         return ZhihuViewHolder(view)
