@@ -34,6 +34,7 @@ public class PullToRefreshRecyclerView extends PullToRefreshBase<HeaderAndFooter
     @Override
     protected HeaderAndFooterRecyclerView createRefreshableView(Context context, AttributeSet attrs) {
         HeaderAndFooterRecyclerView result = new HeaderAndFooterRecyclerView(context , attrs);
+        result.setId(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = result.getLayoutManager();
         if(layoutManager == null) {
             result.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.VERTICAL , false));
