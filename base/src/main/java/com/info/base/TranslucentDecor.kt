@@ -3,7 +3,6 @@ package com.info.base
 import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.view.WindowManager
 import android.widget.LinearLayout
 
@@ -25,7 +24,7 @@ object TranslucentDecor {
 
         val statusBar = View(activity)
         statusBar.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, UIUtils.getStatusBarHeight(activity))
+                ViewGroup.LayoutParams.MATCH_PARENT, UIUtils.getStatusBarHeight())
         parent.addView(statusBar)
         parent.layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
