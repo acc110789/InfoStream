@@ -36,4 +36,7 @@ dependencies {
     api libDependencies.rxJava
     api libDependencies.dagger2
     annotationProcessor libDependencies.dagger2Annotation
+    api libDependencies.retrofitConverter
+    api libDependencies.room
+    api libDependencies.roomCompiler
 }

@@ -6,6 +6,7 @@ ext {
     loggerVersion = "2.1.1"
     rxJavaVersion = "2.1.10"
     dagger2Version = "2.0"
+    archRoomVersion = "1.0.0"
 
     libDependencies = [
             constraintLayout : "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
@@ -18,6 +19,9 @@ ext {
             recyclerview     : "com.android.support:recyclerview-v7:${supportLibVersion}",
             rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             dagger2          : "com.google.dagger:dagger:${dagger2Version}",
-            dagger2Annotation: "com.google.dagger:dagger-compiler:${dagger2Version}"
+            dagger2Annotation: "com.google.dagger:dagger-compiler:${dagger2Version}",
+            retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            room             : "android.arch.persistence.room:runtime:${archRoomVersion}",
+            roomCompiler     : "android.arch.persistence.room:compiler:${archRoomVersion}"
     ]
 }
