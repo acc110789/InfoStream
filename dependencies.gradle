@@ -4,15 +4,20 @@ ext {
     constraintLayoutVersion = "1.0.2"
     stethoVersion = "1.5.0"
     loggerVersion = "2.1.1"
+    rxJavaVersion = "2.1.10"
+    dagger2Version = "2.0"
 
     libDependencies = [
-            constraintLayout: "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
-            appCompatV7     : "com.android.support:appcompat-v7:$supportLibVersion",
-            design          : "com.android.support:design:$supportLibVersion",
-            stetho          : "com.facebook.stetho:stetho:$stethoVersion",
-            stethoOkhttp3   : "com.facebook.stetho:stetho-okhttp3:$stethoVersion",
-            logger          : "com.orhanobut:logger:$loggerVersion",
-            retrofit        : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            recyclerview    : "com.android.support:recyclerview-v7:${supportLibVersion}"
+            constraintLayout : "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
+            appCompatV7      : "com.android.support:appcompat-v7:$supportLibVersion",
+            design           : "com.android.support:design:$supportLibVersion",
+            stetho           : "com.facebook.stetho:stetho:$stethoVersion",
+            stethoOkhttp3    : "com.facebook.stetho:stetho-okhttp3:$stethoVersion",
+            logger           : "com.orhanobut:logger:$loggerVersion",
+            retrofit         : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            recyclerview     : "com.android.support:recyclerview-v7:${supportLibVersion}",
+            rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            dagger2          : "com.google.dagger:dagger:${dagger2Version}",
+            dagger2Annotation: "com.google.dagger:dagger-compiler:${dagger2Version}"
     ]
 }

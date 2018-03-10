@@ -33,4 +33,7 @@ dependencies {
     api libDependencies.stetho
     api libDependencies.stethoOkhttp3
     api libDependencies.logger
+    api libDependencies.rxJava
+    api libDependencies.dagger2
+    annotationProcessor libDependencies.dagger2Annotation
 }
